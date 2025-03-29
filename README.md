@@ -1,7 +1,9 @@
 # readmetest
 
 <details>
-<summary>look_at — Create a transformation that looks at a target point.`</summary>
+<summary>look_at — Create a transformation that looks at a target point.
+
+</summary>
 
 ```py
 def look_at(
