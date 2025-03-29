@@ -1,8 +1,6 @@
 
 <details>
-<summary><code>Vector</code> — An immutable 3D vector representing a point or a direction.
-
-</summary>
+<summary><h3><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h3></summary>
 
 <details>
 <summary><code>zero</code> — Create a zero vector.</summary>
