@@ -3,9 +3,7 @@
 <details>
 <summary>
 
-```py
-look_at(*, eye, look_axis, look_at, look_along, up_axis, up)
-```
+`look_at(*, eye, look_axis, look_at, look_along, up_axis, up)`
   
 </summary>
 
