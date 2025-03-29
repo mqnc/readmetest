@@ -3,7 +3,7 @@
 <details>
 <summary>
 
-## `class Vector`
+## class `class Vector`
    
 </summary>
 <details>
