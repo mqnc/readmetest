@@ -21,6 +21,7 @@ def look_at(
 </summary>
 
 ```py
+        """Create a transformation that looks at a target point.
         eye: location
         look_axis: local view direction (from eye towards target)
         look_at: target if target is a point
@@ -83,6 +84,7 @@ def look_at(
         )
 
         return Trafo(t=eye, r=extrinsic_rotation @ intrinsic_rotation)
+
 ```
 
 </details>
