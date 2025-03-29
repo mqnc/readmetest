@@ -1,6 +1,6 @@
 
 <details>
-<summary><h3><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h3></summary>
+<summary><h4><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h4></summary>
 
 <details>
 <summary><code>zero</code> — Create a zero vector.</summary>
@@ -297,7 +297,7 @@ __repr__(self) -> str
 
 
 <details>
-<summary><h3><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h3></summary>
+<summary><h4><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h4></summary>
 <details>
 <summary>__setattr__ — (no docstring)</summary>
 
