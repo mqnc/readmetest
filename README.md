@@ -297,13 +297,7 @@ __repr__(self) -> str
 
 
 <details>
-<summary>
-
-### Rotation — An immutable 3D orientation or rotation.
-
-</summary>
-
-
+<summary><h3><code>Vector</code> — An immutable 3D vector representing a point or a direction.</h3></summary>
 <details>
 <summary>__setattr__ — (no docstring)</summary>
 
