@@ -1,11 +1,11 @@
 
 <details>
-<summary><pre>Vector</pre> — An immutable 3D vector representing a point or a direction.
+<summary><code>Vector</code> — An immutable 3D vector representing a point or a direction.
 
 </summary>
 
 <details>
-<summary><pre>zero</pre> — Create a zero vector.</summary>
+<summary><code>zero</code> — Create a zero vector.</summary>
 
 ```py
 zero() -> 'Vector'
