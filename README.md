@@ -1,6 +1,12 @@
 # readmetest
 
 <details>
+<summary>
+
+## `class Vector`
+   
+</summary>
+<details>
 <summary>look_at — Create a transformation that looks at a target point.</summary>
 
 <details>
@@ -88,5 +94,5 @@ def look_at(
 ```
 
 </details>
-
+</details>
 </details>
