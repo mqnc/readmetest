@@ -1,72 +1,74 @@
-<details><summary><b><code>class Vector</code></b> — An immutable 3D vector representing a point or a direction.</summary>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>zero</code> — Create a zero vector.</summary>
+<details><summary><b><code>class Vector</code></b> — An immutable 3D vector representing a point or a direction</summary>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<code>x: float = 0.0</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>y: float = 0.0</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>z: float = 0.0</code>
+
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>zero()</code> — Create a zero vector while being extra explicit about it.</summary>
 
 ```py
     @staticmethod
     def zero() -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a zero vector."""
+        """Create a zero vector while being extra explicit about it."""
         return Vector(0.0, 0.0, 0.0)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ex</code> — Create a unit vector in x-direction.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ex()</code> — Create a unit vector in x-direction.</summary>
 
 ```py
     @staticmethod
     def ex() -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a unit vector in x-direction."""
         return Vector(1.0, 0.0, 0.0)
-
 ```
 </details>
 </details>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ey</code> — Create a unit vector in y-direction.</summary>
 
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ey()</code> — Create a unit vector in y-direction.</summary>
 
 ```py
     @staticmethod
     def ey() -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a unit vector in y-direction."""
         return Vector(0.0, 1.0, 0.0)
-
 ```
-</details><br>
 </details>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ez</code> — Create a unit vector in z-direction.</summary>
+</details>
 
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ez()</code> — Create a unit vector in z-direction.</summary>
 
 ```py
     @staticmethod
     def ez() -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a unit vector in z-direction."""
         return Vector(0.0, 0.0, 1.0)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand_box</code> — Create a random vector with uniform distribution within an axis-aligned cuboid.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand_box(...)</code> — Create a random vector with uniform distribution within a cuboid.</summary>
 
 ```py
     @staticmethod
@@ -76,22 +78,20 @@
         generator: random.Random = cast(random.Random, random),
     ) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a random vector with uniform distribution within an axis-aligned cuboid."""
+        """Create a random vector with uniform distribution within a cuboid."""
         return Vector(
             generator.uniform(min[0], max[0]),
             generator.uniform(min[1], max[1]),
             generator.uniform(min[2], max[2]),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand_sphere</code> — Create a random vector with uniform distribution on or in a sphere.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand_sphere(...)</code> — Create a random vector with uniform distribution on or in a sphere.</summary>
 
 ```py
     @staticmethod
@@ -102,7 +102,7 @@
         generator: random.Random = cast(random.Random, random),
     ) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a random vector with uniform distribution on or in a sphere."""
@@ -116,18 +116,16 @@
             center[1] + radius * v[1],
             center[2] + radius * v[2],
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__</code> — Check equality with another vector; true if all elements are equal.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__(...)</code> — Check equality with another vector; true if all elements are equal.</summary>
 
 ```py
     def __eq__(self, other: object) -> bool:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Check equality with another vector; true if all elements are equal."""
@@ -135,221 +133,202 @@
             return self[:] == other[:]
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__ne__</code> — Check inequality with another vector; true if any element is unequal.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__ne__(...)</code> — Check inequality with another vector; true if any element is unequal.</summary>
 
 ```py
     def __ne__(self, other: object) -> bool:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Check inequality with another vector; true if any element is unequal."""
         return not self == other
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__add__</code> — Add another vector element-wise.
-Note that this violates LSP for tuples which are expected to concatenate instead.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__add__(...)</code> — Add another vector element-wise (returns a new Vector).</summary>
 
+Note that this violates LSP for tuples which are expected to concatenate instead.
 
 ```py
     def __add__(self, other: "Vector") -> "Vector":  # type: ignore[override]
-        """Add another vector element-wise.
+```
+<details open><summary><i>source code</i></summary>
+
+```py
+        """Add another vector element-wise (returns a new Vector).
         Note that this violates LSP for tuples which are expected to concatenate instead.
         """
         if isinstance(other, Vector):
-```
-<details><summary><i>source code</i></summary>
-
-```py
             return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__neg__</code> — Return the negated vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__neg__()</code> — Return the negated vector (as a new Vector).</summary>
 
 ```py
     def __neg__(self) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the negated vector."""
+        """Return the negated vector (as a new Vector)."""
         return Vector(-self.x, -self.y, -self.z)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__sub__</code> — Subtract another vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__sub__(...)</code> — Subtract another vector (returns a new Vector).</summary>
 
 ```py
     def __sub__(self, other: "Vector") -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Subtract another vector."""
+        """Subtract another vector (returns a new Vector)."""
         if isinstance(other, Vector):
             return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__mul__</code> — Multiply by a scalar element-wise.
-Note that this violates LSP for tuples which are expected to repeat instead.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__mul__(...)</code> — Multiply by a scalar element-wise (returns a new Vector).</summary>
 
+Note that this violates LSP for tuples which are expected to repeat instead.
 
 ```py
     def __mul__(self, scalar: float) -> "Vector":  # type: ignore[override]
-        """Multiply by a scalar element-wise.
-        Note that this violates LSP for tuples which are expected to repeat instead."""
-        if isinstance(scalar, (int, float)):
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
+        """Multiply by a scalar element-wise (returns a new Vector).
+        Note that this violates LSP for tuples which are expected to repeat instead."""
+        if isinstance(scalar, (int, float)):
             return Vector(self.x * scalar, self.y * scalar, self.z * scalar)
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__rmul__</code> — Multiply by a scalar element-wise.
-Note that this violates LSP for tuples which are expected to repeat instead.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__rmul__(...)</code> — Multiply by a scalar element-wise (returns a new Vector).</summary>
 
+Note that this violates LSP for tuples which are expected to repeat instead.
 
 ```py
     def __rmul__(self, scalar: float) -> "Vector":  # type: ignore[override]
-        """Multiply by a scalar element-wise.
-        Note that this violates LSP for tuples which are expected to repeat instead."""
-        return self * scalar
-:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        
+        """Multiply by a scalar element-wise (returns a new Vector).
+        Note that this violates LSP for tuples which are expected to repeat instead."""
+        return self * scalar
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__truediv__</code> — Divide by a scalar element-wise.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__truediv__(...)</code> — Divide by a scalar element-wise (returns a new Vector).</summary>
 
 ```py
     def __truediv__(self, scalar: float) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Divide by a scalar element-wise."""
+        """Divide by a scalar element-wise (returns a new Vector)."""
         if isinstance(scalar, (int, float)):
             return Vector(self.x / scalar, self.y / scalar, self.z / scalar)
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>dot</code> — Calculate the dot product with another vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>dot(...)</code> — Calculate the dot product with another vector.</summary>
 
 ```py
     def dot(self, other: "Vector") -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the dot product with another vector."""
         return self.x * other.x + self.y * other.y + self.z * other.z
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>cross</code> — Calculate the cross product with another vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>cross(...)</code> — Calculate the cross product with another vector (returns a new Vector).</summary>
 
 ```py
     def cross(self, other: "Vector") -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Calculate the cross product with another vector."""
+        """Calculate the cross product with another vector (returns a new Vector)."""
         return Vector(
             self.y * other.z - self.z * other.y,
             self.z * other.x - self.x * other.z,
             self.x * other.y - self.y * other.x,
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>norm</code> — Calculate the Euclidean norm (length) of the vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>norm()</code> — Calculate the Euclidean norm (length) of the vector.</summary>
 
 ```py
     def norm(self) -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the Euclidean norm (length) of the vector."""
         return norm(*self)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>length</code> — Calculate the length (Euclidean norm) of the vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>length()</code> — Calculate the length (Euclidean norm) of the vector.</summary>
 
 ```py
     def length(self) -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the length (Euclidean norm) of the vector."""
         return norm(*self)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>normalized</code> — Return a normalized (unit) vector with the same direction; raises when called on a zero vector.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>normalized()</code> — Return a (new) normalized vector with the same direction.</summary>
 
+Raises when called on a zero vector.
 
 ```py
     def normalized(self) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return a normalized (unit) vector with the same direction; raises when called on a zero vector."""
+        """Return a (new) normalized vector with the same direction.
+        Raises when called on a zero vector."""
         x, y, z = self.x, self.y, self.z
         m = max(abs(x), abs(y), abs(z))
         if m == 0:
@@ -357,24 +336,22 @@ Note that this violates LSP for tuples which are expected to repeat instead.</su
         x, y, z = x / m, y / m, z / m
         norm = sqrt(x * x + y * y + z * z)
         return Vector(x / norm, y / norm, z / norm)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>perp</code> — Calculate a vector perpendicular to this vector;
-if other is given, the result is perpendicular to both.
-Raises when called on a zero vector or when the vectors are parallel.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>perp(...)</code> — Calculate a vector perpendicular to this vector.</summary>
 
+If other is given, the result is perpendicular to both.<br>Raises when called on a zero vector or when the vectors are parallel.
 
 ```py
     def perp(self, other: Optional["Vector"] = None) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Calculate a vector perpendicular to this vector;
-        if other is given, the result is perpendicular to both.
+        """Calculate a vector perpendicular to this vector.
+        If other is given, the result is perpendicular to both.
         Raises when called on a zero vector or when the vectors are parallel."""
         if other is None:
             if abs(self.x) < abs(self.y) and abs(self.x) <= abs(self.z):
@@ -384,27 +361,23 @@ Raises when called on a zero vector or when the vectors are parallel.</summary>
             else:
                 other = Vector(0.0, 0.0, 1.0)
         return self.cross(other).normalized()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>make_basis</code> — Create an orthonormal basis from two vectors;
-the direction of the first vector is preserved,
-the second is made perpendicular to the first,
-the third is perpendicular to the first two.
-Raises when called on a zero vector or when the vectors are parallel.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>make_basis(...)</code> — Create an orthonormal basis from two vectors.</summary>
 
+The direction of the first vector is preserved,<br>the second is made perpendicular to the first,<br>the third is perpendicular to the first two.<br>Raises when called on a zero vector or when the vectors are parallel.
 
 ```py
     @staticmethod
     def make_basis(v1: "Vector", v2: "Vector") -> Tuple["Vector", "Vector", "Vector"]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create an orthonormal basis from two vectors;
-        the direction of the first vector is preserved,
+        """Create an orthonormal basis from two vectors.
+        The direction of the first vector is preserved,
         the second is made perpendicular to the first,
         the third is perpendicular to the first two.
         Raises when called on a zero vector or when the vectors are parallel."""
@@ -412,70 +385,63 @@ Raises when called on a zero vector or when the vectors are parallel.</summary>
         v3 = v1.perp(v2)
         v2 = v3.perp(v1)
         return v1, v2, v3
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>distance_to</code> — Calculate the Euclidean distance to another vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>distance_to(...)</code> — Calculate the Euclidean distance to another vector.</summary>
 
 ```py
     def distance_to(self, other: "Vector") -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the Euclidean distance to another vector."""
         return (self - other).norm()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>angle_to</code> — Calculate the angle to another vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>angle_to(...)</code> — Calculate the angle to another vector (in rad).</summary>
 
 ```py
     def angle_to(self, other: "Vector") -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Calculate the angle to another vector."""
+        """Calculate the angle to another vector (in rad)."""
         v1 = self.normalized()
         v2 = other.normalized()
         cos_angle = v1.dot(v2)
         sin_angle = v1.cross(v2).norm()
         return atan2(sin_angle, cos_angle)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp</code> — Linearly interpolate between two vectors.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp(...)</code> — Linearly interpolate between two vectors (returns a new Vector).</summary>
 
 ```py
     def lerp(self, other: "Vector", f: float) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Linearly interpolate between two vectors."""
+        """Linearly interpolate between two vectors (returns a new Vector)."""
         return Vector(
             self.x + f * (other.x - self.x),
             self.y + f * (other.y - self.y),
             self.z + f * (other.z - self.z),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean</code> — Calculate the weighted mean of a sequence of vectors.
-Raises when called with an empty sequence or when the sum of weights is zero.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean(...)</code> — Calculate the weighted mean of a sequence of vectors.</summary>
 
+Raises when called with an empty sequence or when the sum of weights is zero.
 
 ```py
     @staticmethod
@@ -483,7 +449,7 @@ Raises when called with an empty sequence or when the sum of weights is zero.</s
         vectors: Iterable["Vector"], weights: Optional[Iterable[float]] = None
     ) -> "Vector":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the weighted mean of a sequence of vectors.
@@ -513,212 +479,204 @@ Raises when called with an empty sequence or when the sum of weights is zero.</s
             )
 
         return Vector(x / w_sum, y / w_sum, z / w_sum)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__</code> — Return a string representation of the vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__()</code> — Return a string representation of the vector.</summary>
 
 ```py
     def __str__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return a string representation of the vector."""
         return f"(x={self.x}, y={self.y}, z={self.z})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__</code> — Return a formatted string representation of the vector;
-the format_spec is applied to each element.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__(...)</code> — Return a formatted string representation of the vector.</summary>
 
+The format_spec is applied to each element.
 
 ```py
     def __format__(self, format_spec: str) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return a formatted string representation of the vector;
-        the format_spec is applied to each element."""
+        """Return a formatted string representation of the vector.
+        The format_spec is applied to each element."""
         fx = self.x.__format__(format_spec)
         fy = self.y.__format__(format_spec)
         fz = self.z.__format__(format_spec)
         return f"(x={fx}, y={fy}, z={fz})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__</code> — Return an eval-able string representation of the vector.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__()</code> — Return an eval-able string representation of the vector.</summary>
 
 ```py
     def __repr__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return an eval-able string representation of the vector."""
         return f"Vector({self.x}, {self.y}, {self.z})"
-
 ```
-</details><br>
+</details>
 </details>
 
 <br></details>
 
-<details><summary><b><code>class Rotation</code></b> — An immutable 3D orientation or rotation.</summary>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__setattr__</code> — (no docstring)</summary>
+<details><summary><b><code>class Rotation</code></b> — An immutable 3D orientation or rotation</summary>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_x: float</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_y: float</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_z: float</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_w: float</code>
+
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__setattr__(...)</code> — Deleted, always raises.</summary>
 
 ```py
     def __setattr__(self, name: str, value: float) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
+        """Deleted, always raises."""
         raise AttributeError("Rotation is immutable")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__delattr__</code> — (no docstring)</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__delattr__(...)</code> — Deleted, always raises.</summary>
 
 ```py
     def __delattr__(self, name: str) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
+        """Deleted, always raises."""
         raise AttributeError("Rotation is immutable")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__new__</code> — Construct a rotation from quaternion components without normalization,
-intended only for use in classmethods. Use from_quat instead.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__new__(...)</code> — Construct a rotation from quaternion components without normalization.</summary>
 
+Intended only for use in classmethods. Use from_quat instead.
 
 ```py
     def __new__(
         cls: Type[_T], *, x: float = 0.0, y: float = 0.0, z: float = 0.0, w: float = 1.0
     ) -> _T:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Construct a rotation from quaternion components without normalization,
-        intended only for use in classmethods. Use from_quat instead."""
+        """Construct a rotation from quaternion components without normalization.
+        Intended only for use in classmethods. Use from_quat instead."""
         instance = super().__new__(cls)
         object.__setattr__(instance, "_x", x)
         object.__setattr__(instance, "_y", y)
         object.__setattr__(instance, "_z", z)
         object.__setattr__(instance, "_w", w)
         return instance
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__</code> — Create the identity rotation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__()</code> — Create the identity rotation.</summary>
 
 ```py
     def __init__(self) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create the identity rotation."""
         # we only allow creation of the identity rotation via standard constructor
         # x, y, z, w are implementation details and should only be set via from_quat from the outside
         pass
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>identity</code> — Create the identity rotation while being extra explicit about it.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>identity()</code> — Create the identity rotation while being extra explicit about it.</summary>
 
 ```py
     @staticmethod
     def identity() -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create the identity rotation while being extra explicit about it."""
         return Rotation()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>x</code> — Create a rotation about the x-axis.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>x(...)</code> — Create a rotation about the x-axis.</summary>
 
 ```py
     @staticmethod
     def x(angle: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation about the x-axis."""
         return Rotation.__new__(Rotation, x=sin(angle / 2.0), w=cos(angle / 2.0))
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>y</code> — Create a rotation about the y-axis.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>y(...)</code> — Create a rotation about the y-axis.</summary>
 
 ```py
     @staticmethod
     def y(angle: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation about the y-axis."""
         return Rotation.__new__(Rotation, y=sin(angle / 2.0), w=cos(angle / 2.0))
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>z</code> — Create a rotation about the z-axis.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>z(...)</code> — Create a rotation about the z-axis.</summary>
 
 ```py
     @staticmethod
     def z(angle: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation about the z-axis."""
         return Rotation.__new__(Rotation, z=sin(angle / 2.0), w=cos(angle / 2.0))
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_quat</code> — Create a rotation from quaternion components.
-Raises an error if the norm deviates from 1 beyond the specified tolerance
-or if all components are 0.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_quat()</code> — Create a rotation from quaternion components.</summary>
 
+Raises if the norm deviates from 1 beyond the specified tolerance<br>or if all components are 0.
 
 ```py
     @staticmethod
@@ -726,11 +684,11 @@ or if all components are 0.</summary>
         *, x: float, y: float, z: float, w: float, tolerance: float = EPS
     ) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation from quaternion components.
-        Raises an error if the norm deviates from 1 beyond the specified tolerance
+        Raises if the norm deviates from 1 beyond the specified tolerance
         or if all components are 0."""
 
         m = max(abs(x), abs(y), abs(z), abs(w))
@@ -747,20 +705,18 @@ or if all components are 0.</summary>
         return Rotation.__new__(
             Rotation, x=x_ / norm_, y=y_ / norm_, z=z_ / norm_, w=w_ / norm_
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_quat</code> — Return the quaternion components in the specified order.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_quat(...)</code> — Return the quaternion components in the specified order.</summary>
 
 ```py
     def as_quat(
         self, order: Literal["xyzw", "wxyz"]
     ) -> Tuple[float, float, float, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the quaternion components in the specified order."""
@@ -770,22 +726,20 @@ or if all components are 0.</summary>
             return self._w, self._x, self._y, self._z
         else:
             raise ValueError("order must be either 'xyzw' or 'wxyz'")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_axis_angle</code> — Create a rotation from an axis and an angle.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_axis_angle(...)</code> — Create a rotation from an axis and an angle (in rad).</summary>
 
 ```py
     @staticmethod
     def from_axis_angle(axis: Vector, angle: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a rotation from an axis and an angle."""
+        """Create a rotation from an axis and an angle (in rad)."""
         axis = axis.normalized()
         half_angle = angle / 2.0
         sin_half_angle = sin(half_angle)
@@ -796,23 +750,21 @@ or if all components are 0.</summary>
             z=sin_half_angle * axis.z,
             w=cos(half_angle),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_axis_angle</code> — Return the axis and angle of the rotation.
-The angle is in the range [0, pi).
-If the angle is 0, the axis is (1, 0, 0).</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_axis_angle()</code> — Return the axis and angle (in rad) of the rotation.</summary>
 
+The angle is in the range [0, pi).<br>If the angle is 0, the axis is (1, 0, 0).
 
 ```py
     def as_axis_angle(self) -> Tuple[Vector, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the axis and angle of the rotation.
+        """Return the axis and angle (in rad) of the rotation.
         The angle is in the range [0, pi).
         If the angle is 0, the axis is (1, 0, 0)."""
         x, y, z, w = self._x, self._y, self._z, self._w
@@ -826,25 +778,24 @@ If the angle is 0, the axis is (1, 0, 0).</summary>
             return Vector(x, y, z).normalized(), angle
         else:
             return Vector(-x, -y, -z).normalized(), 2.0 * pi - angle
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_rotvec</code> — Create a rotation from a rotation vector.
-(The rotation vector is the axis of rotation scaled by the angle of rotation.)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_rotvec(...)</code> — Create a rotation from a rotation vector.</summary>
 
+A rotation vector is the axis of rotation<br>scaled by the angle of rotation.
 
 ```py
     @staticmethod
     def from_rotvec(rotvec: Vector) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation from a rotation vector.
-        (The rotation vector is the axis of rotation scaled by the angle of rotation.)
-        """
+        A rotation vector is the axis of rotation
+        scaled by the angle of rotation."""
         angle = rotvec.norm()
         if angle == 0.0:
             return Rotation()
@@ -854,33 +805,30 @@ If the angle is 0, the axis is (1, 0, 0).</summary>
             )
         else:
             return Rotation.from_axis_angle(rotvec.normalized(), angle)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_rotvec</code> — Return the rotation vector of the rotation.
-(The rotation vector is the axis of rotation scaled by the angle of rotation.)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_rotvec()</code> — Return the rotation vector of the rotation.</summary>
 
+A rotation vector is the axis of rotation<br>scaled by the angle of rotation.
 
 ```py
     def as_rotvec(self) -> Vector:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the rotation vector of the rotation.
-        (The rotation vector is the axis of rotation scaled by the angle of rotation.)
-        """
+        A rotation vector is the axis of rotation
+        scaled by the angle of rotation."""
         axis, angle = self.as_axis_angle()
         return axis * angle
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_matrix</code> — Create a rotation from a 3x3 rotation matrix.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_matrix(...)</code> — Create a rotation from a 3x3 rotation matrix.</summary>
 
 ```py
     @staticmethod
@@ -890,7 +838,7 @@ If the angle is 0, the axis is (1, 0, 0).</summary>
         check_matrix: bool = True,
     ) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation from a 3x3 rotation matrix."""
@@ -951,18 +899,16 @@ If the angle is 0, the axis is (1, 0, 0).</summary>
             return Rotation.from_quat(
                 x=(m02 + m20) / s, y=(m12 + m21) / s, z=0.25 * s, w=(m10 - m01) / s
             )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_matrix</code> — Return the rotation as a 3x3 rotation matrix.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_matrix(...)</code> — Return the rotation as a 3x3 rotation matrix.</summary>
 
 ```py
     def as_matrix(self, row_major: bool = True) -> List[List[float]]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the rotation as a 3x3 rotation matrix."""
@@ -984,40 +930,34 @@ If the angle is 0, the axis is (1, 0, 0).</summary>
                 [2.0 * (xy - zw), 1.0 - 2.0 * (xx + zz), 2.0 * (yz + xw)],
                 [2.0 * (xz + yw), 2.0 * (yz - xw), 1.0 - 2.0 * (xx + yy)],
             ]
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>basis</code> — Return the basis vectors of the rotation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>basis()</code> — Return the basis vectors of the rotation.</summary>
 
 ```py
     def basis(self) -> Tuple[Vector, Vector, Vector]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the basis vectors of the rotation."""
         x, y, z = self.as_matrix(row_major=False)
         return Vector(*x), Vector(*y), Vector(*z)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>compose</code> — Compose a rotation from a sequence of rotations about x, y and z.
-The sequence is an arbitrarily long string of axis identifiers, e.g. 'XY' or 'zyxZ'.
-Use Capital letters for intrinsic rotations (rotate about the new, rotated axes),
-use lowercase letters for extrinsic rotations (rotate about the world axes).
-Intrinsic and extrinsic rotations can be mixed.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>compose(...)</code> — Compose a rotation from a sequence of rotations about x, y and z.</summary>
 
+The sequence is an arbitrarily long string of axis identifiers, e.g. 'XY' or 'zyxZ'.<br>Use Capital letters for intrinsic rotations (rotate about the new, rotated axes),<br>use lowercase letters for extrinsic rotations (rotate about the world axes).<br>Intrinsic and extrinsic rotations can be mixed.
 
 ```py
     @staticmethod
     def compose(sequence: str, angles: Sequence[float]) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Compose a rotation from a sequence of rotations about x, y and z.
@@ -1049,28 +989,23 @@ Intrinsic and extrinsic rotations can be mixed.</summary>
                     f"unknown axis: {axis}; only X, Y, Z, x, y, z are allowed"
                 )
         return Rotation.from_quat(x=x, y=y, z=z, w=w)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_euler</code> — Create a rotation from Euler angles. The following orders are allowed:
-ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)
-XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)
-zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)
-xyz, yzx, zxy, xzy, zyx, yxz (Tait-Bryan, extrinsic)
-intrinsic: rotate about the new, rotated axes
-extrinsic: rotate about the original axes</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_euler(...)</code> — Create a rotation from Euler angles.</summary>
 
+The following orders are allowed:<br>ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)<br>XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)<br>zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)<br>xyz, yzx, zxy, xzy, zyx, yxz (Tait-Bryan, extrinsic)<br>intrinsic: rotate about the new, rotated axes<br>extrinsic: rotate about the original axes
 
 ```py
     @staticmethod
     def from_euler(order: str, angles: Sequence[float]) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a rotation from Euler angles. The following orders are allowed:
+        """Create a rotation from Euler angles.
+        The following orders are allowed:
         ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)
         XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)
         zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)
@@ -1082,29 +1017,22 @@ extrinsic: rotate about the original axes</summary>
                 f"Euler order {order} unknown, must be one of {Rotation._euler_orders}"
             )
         return Rotation.compose(order, [angles[0], angles[1], angles[2]])
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_euler</code> — Return the Euler angles of the rotation. The order is one of:
-ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)
-XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)
-zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)
-xyz, yzx, zxy, xzy, zyx, yxz (Tait-Bryan, extrinsic)
-intrinsic: rotate about the new, rotated axes
-extrinsic: rotate about the original axes
-In case of a singularity, the first angle is set to 0 for extrinsic rotations,
-the third angle is set to 0 for intrinsic rotations.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_euler(...)</code> — Return the Euler angles of the rotation.</summary>
 
+The order is one of:<br>ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)<br>XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)<br>zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)<br>xyz, yzx, zxy, xzy, zyx, yxz (Tait-Bryan, extrinsic)<br>intrinsic: rotate about the new, rotated axes<br>extrinsic: rotate about the original axes<br>In case of a singularity, the first angle is set to 0 for extrinsic rotations,<br>the third angle is set to 0 for intrinsic rotations.
 
 ```py
     def as_euler(self, order: str) -> Tuple[float, float, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the Euler angles of the rotation. The order is one of:
+        """Return the Euler angles of the rotation.
+        The order is one of:
         ZXZ, XYX, YZY, ZYZ, XZX, YXY (proper Euler, intrinsic)
         XYZ, YZX, ZXY, XZY, ZYX, YXZ (Tait-Bryan, intrinsic)
         zxz, xyx, yzy, zyz, xzx, yxy (proper Euler, extrinsic)
@@ -1150,89 +1078,81 @@ the third angle is set to 0 for intrinsic rotations.</summary>
         if is_extrinsic:
             return gamma, beta, alpha
         return alpha, beta, gamma
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_ypr</code> — Create a rotation from yaw, pitch and roll angles.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_ypr(...)</code> — Create a rotation from yaw, pitch and roll angles.</summary>
 
 ```py
     @staticmethod
     def from_ypr(yaw: float, pitch: float, roll: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation from yaw, pitch and roll angles."""
         return Rotation.compose("ZYX", [yaw, pitch, roll])
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_ypr</code> — Return the yaw, pitch and roll angles of the rotation.
-In case of a singularity, roll is set to 0.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_ypr()</code> — Return the yaw, pitch and roll angles of the rotation.</summary>
 
+In case of a singularity (gimbal lock), roll is set to 0.
 
 ```py
     def as_ypr(self) -> Tuple[float, float, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the yaw, pitch and roll angles of the rotation.
-        In case of a singularity, roll is set to 0."""
+        In case of a singularity (gimbal lock), roll is set to 0."""
         return self.as_euler("ZYX")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_rpy</code> — Create a rotation from roll, pitch and yaw angles.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_rpy(...)</code> — Create a rotation from roll, pitch and yaw angles.</summary>
 
 ```py
     @staticmethod
     def from_rpy(roll: float, pitch: float, yaw: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a rotation from roll, pitch and yaw angles."""
         return Rotation.compose("xyz", [roll, pitch, yaw])
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_rpy</code> — Return the roll, pitch and yaw angles of the rotation.
-In case of a singularity, roll is set to 0.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_rpy()</code> — Return the roll, pitch and yaw angles of the rotation.</summary>
 
+In case of a singularity (gimbal lock), roll is set to 0.
 
 ```py
     def as_rpy(self) -> Tuple[float, float, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the roll, pitch and yaw angles of the rotation.
-        In case of a singularity, roll is set to 0."""
+        In case of a singularity (gimbal lock), roll is set to 0."""
         return self.as_euler("xyz")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand</code> — Create a random rotation with uniform distribution.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rand(...)</code> — Create a random rotation with uniform distribution.</summary>
 
 ```py
     @staticmethod
     def rand(generator: random.Random = cast(random.Random, random)) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a random rotation with uniform distribution."""
@@ -1242,21 +1162,19 @@ In case of a singularity, roll is set to 0.</summary>
         w = generator.gauss()
         # should be impossible for Mersenne twister to generate a zero quaternion
         return Rotation.from_quat(x=x, y=y, z=z, w=w, tolerance=_inf)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>_rotate_vector</code> — Rotate a vector by the rotation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>_rotate_vector(...)</code> — Rotate a vector by the rotation (returns a new Vector).</summary>
 
 ```py
     def _rotate_vector(self, other: Vector) -> Vector:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Rotate a vector by the rotation."""
+        """Rotate a vector by the rotation (returns a new Vector)."""
         qx, qy, qz, qw = self._x, self._y, self._z, self._w
         px, py, pz = other  # pw = 0
 
@@ -1270,18 +1188,16 @@ In case of a singularity, roll is set to 0.</summary>
         qpq_z = -qpw * qz - qpx * qy + qpy * qx + qpz * qw
 
         return Vector(qpq_x, qpq_y, qpq_z)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>_rotate_quat</code> — Combine two rotations (quaternion multiplication).</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>_rotate_quat(...)</code> — Combine two rotations (quaternion multiplication).</summary>
 
 ```py
     def _rotate_quat(self, other: "Rotation") -> Tuple[float, float, float, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Combine two rotations (quaternion multiplication)."""
@@ -1293,74 +1209,36 @@ In case of a singularity, roll is set to 0.</summary>
         w = w1 * w2 - x1 * x2 - y1 * y2 - z1 * z2
         # does not return Rotation to let the caller decide whether to normalize
         return x, y, z, w
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Combine two rotations.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__(...)</code> — Combine two rotations or rotate a vector or a sequence of vectors.</summary>
 
 ```py
     @overload
     def __matmul__(self, other: "Rotation") -> "Rotation":
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Combine two rotations."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Rotate a vector.</summary>
-
-
-```py
     @overload
     def __matmul__(self, other: Vector) -> Vector:
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Rotate a vector."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Rotate a sequence of vectors.</summary>
-
-
-```py
     @overload
     def __matmul__(self, other: Iterable[Vector]) -> Iterable[Vector]:
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Rotate a sequence of vectors."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Combine two rotations or rotate a vector or sequence of vectors.</summary>
-
-
-```py
     def __matmul__(
         self, other: Union["Rotation", Vector, Iterable[Vector]]
     ) -> Union["Rotation", Vector, Iterable[Vector]]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Combine two rotations or rotate a vector or sequence of vectors."""
+        """Combine two rotations or rotate a vector or a sequence of vectors."""
         if isinstance(other, Rotation):
             x, y, z, w = self._rotate_quat(other)
             return Rotation.from_quat(x=x, y=y, z=z, w=w)
@@ -1381,80 +1259,75 @@ In case of a singularity, roll is set to 0.</summary>
             ]
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>inverse</code> — Return the inverse rotation such that self @ self.inverse() == Rotation.identity().</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>inverse()</code> — Return the inverse rotation (as a new Rotation).</summary>
 
+Such that self @ self.inverse() == Rotation.identity().
 
 ```py
     def inverse(self) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the inverse rotation such that self @ self.inverse() == Rotation.identity()."""
+        """Return the inverse rotation (as a new Rotation).
+        Such that self @ self.inverse() == Rotation.identity()."""
         return Rotation.__new__(Rotation, x=-self._x, y=-self._y, z=-self._z, w=self._w)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>angle_to</code> — Calculate the angle to another rotation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>angle_to(...)</code> — Calculate the angle to another rotation (in rad).</summary>
 
 ```py
     def angle_to(self, other: "Rotation") -> float:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Calculate the angle to another rotation."""
+        """Calculate the angle to another rotation (in rad)."""
         _, ang = (~self @ other).as_axis_angle()
         return ang
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>axis_angle_to</code> — Calculate the axis and angle to another rotation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>axis_angle_to(...)</code> — Calculate the axis and angle (in rad) to another rotation.</summary>
 
 ```py
     def axis_angle_to(self, other: "Rotation") -> Tuple[Vector, float]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Calculate the axis and angle to another rotation."""
+        """Calculate the axis and angle (in rad) to another rotation."""
         ax, ang = (~self @ other).as_axis_angle()
         return self @ ax, ang
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp</code> — Linearly interpolate between two rotations.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp(...)</code> — Linearly interpolate between two rotations (returns a new Rotation).</summary>
 
 ```py
     def lerp(self, other: "Rotation", f: float) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Linearly interpolate between two rotations."""
+        """Linearly interpolate between two rotations (returns a new Rotation)."""
         ax, ang = (~self @ other).as_axis_angle()
         return self @ Rotation.from_axis_angle(ax, ang * f)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean</code> — (no docstring)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean(...)</code> — Calculate the mean of a sequence of rotations.</summary>
 
+Uses the NASA algorithm (https://ntrs.nasa.gov/citations/20070017872).<br>Raises when called with an empty sequence or when the sum of weights is zero.<br>Set return_report to True to get additional information about convergence.
 
 ```py
     @staticmethod
@@ -1466,20 +1339,7 @@ In case of a singularity, roll is set to 0.</summary>
         max_iterations: int = 20,
         return_report: Literal[False] = False,
     ) -> "Rotation": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean</code> — (no docstring)</summary>
-
-
-```py
     @staticmethod
     @overload
     def mean(
@@ -1489,23 +1349,7 @@ In case of a singularity, roll is set to 0.</summary>
         max_iterations: int = 20,
         return_report: Literal[True] = True,
     ) -> Tuple["Rotation", RotationMeanReport]: ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean</code> — Calculate the mean of a sequence of rotations.
-Uses the NASA algorithm (https://ntrs.nasa.gov/citations/20070017872).
-Raises when called with an empty sequence or when the sum of weights is zero.
-Set return_report to True to get additional information about convergence.</summary>
-
-
-```py
     @staticmethod
     def mean(
         rotations: Iterable["Rotation"],
@@ -1515,7 +1359,7 @@ Set return_report to True to get additional information about convergence.</summ
         return_report: bool = False,
     ) -> Union["Rotation", Tuple["Rotation", RotationMeanReport]]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the mean of a sequence of rotations.
@@ -1598,25 +1442,26 @@ Set return_report to True to get additional information about convergence.</summ
             return result, Rotation.RotationMeanReport(
                 converged, iterations=i + 1, final_error=abs(1.0 - trace)
             )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards</code> — Return a rotated version of the rotation such that the local pointer is rotated
-towards the global point_along direction. Use interpolate to blend between the two.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards(...)</code> — Start from this rotation and rotate pointer towards point_along (returns a new Rotation).</summary>
 
+pointer is a local vector in the current rotation,<br>point_along is a global direction.<br>Use interpolate to blend between the two.
 
 ```py
     def rotated_towards(
         self, pointer: Vector, point_along: Vector, interpolate: float = 1.0
     ) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return a rotated version of the rotation such that the local pointer is rotated
-        towards the global point_along direction. Use interpolate to blend between the two.
+        """Start from this rotation and rotate pointer towards point_along (returns a new Rotation).
+        pointer is a local vector in the current rotation,
+        point_along is a global direction.
+        Use interpolate to blend between the two.
         """
         current = self @ pointer
         axis = current.cross(point_along)
@@ -1624,21 +1469,24 @@ towards the global point_along direction. Use interpolate to blend between the t
             axis = current.perp()
         angle = current.angle_to(point_along)
         return Rotation.from_axis_angle(axis, angle * interpolate) @ self
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__</code> — Check if two rotations are equal.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__(...)</code> — Check if two rotations are equal.</summary>
 
+If the underlying quaternions are opposite, they represent the same rotation<br>and are considered equal.
 
 ```py
     def __eq__(self, other: object) -> bool:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Check if two rotations are equal."""
+        """Check if two rotations are equal.
+        If the underlying quaternions are opposite, they represent the same rotation
+        and are considered equal."""
+
         if isinstance(other, Rotation):
             return (
                 self._x == other._x
@@ -1653,61 +1501,54 @@ towards the global point_along direction. Use interpolate to blend between the t
             )
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__invert__</code> — Return the inverse rotation such that r @ ~r == Rotation.identity().</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__invert__()</code> — Return the inverse rotation such that r @ ~r == Rotation.identity().</summary>
 
 ```py
     def __invert__(self) -> "Rotation":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the inverse rotation such that r @ ~r == Rotation.identity()."""
         return self.inverse()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__</code> — Return a string representation of the rotation.
-Note that opposite quaternions represent the same rotation and are considered equal
-whereas their string representations are different.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__()</code> — Return a string representation of the rotation.</summary>
 
+Note that opposite quaternions represent the same rotation and are considered equal<br>whereas their string representations are different.
 
 ```py
     def __str__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return a string representation of the rotation.
         Note that opposite quaternions represent the same rotation and are considered equal
         whereas their string representations are different."""
         return f"±(x={self._x}, y={self._y}, z={self._z}, w={self._w})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__</code> — Return a formatted string representation of the rotation;
-the format_spec is applied to each element.
-Note that opposite quaternions represent the same rotation and are considered equal
-whereas their string representations are different.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__(...)</code> — Return a formatted string representation of the rotation.</summary>
 
+The format_spec is applied to each element.<br>Note that opposite quaternions represent the same rotation and are considered equal<br>whereas their string representations are different.
 
 ```py
     def __format__(self, format_spec: str) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return a formatted string representation of the rotation;
-        the format_spec is applied to each element.
+        """Return a formatted string representation of the rotation.
+        The format_spec is applied to each element.
         Note that opposite quaternions represent the same rotation and are considered equal
         whereas their string representations are different."""
 
@@ -1716,43 +1557,41 @@ whereas their string representations are different.</summary>
         fz = self._z.__format__(format_spec)
         fw = self._w.__format__(format_spec)
         return f"±(x={fx}, y={fy}, z={fz}, w={fw})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__</code> — Return an eval-able string representation of the rotation.
-Note that opposite quaternions represent the same rotation and are considered equal
-whereas their string representations are different.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__()</code> — Return an eval-able string representation of the rotation.</summary>
 
+Note that opposite quaternions represent the same rotation and are considered equal<br>whereas their string representations are different.
 
 ```py
     def __repr__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return an eval-able string representation of the rotation.
         Note that opposite quaternions represent the same rotation and are considered equal
         whereas their string representations are different."""
         return f"Rotation.from_quat(x={self._x}, y={self._y}, z={self._z}, w={self._w})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__hash__</code> — Return a hash of the rotation. Quaternions with opposite signs are equal
-and return the same hash.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__hash__()</code> — Return a hash of the rotation.</summary>
 
+Quaternions with opposite signs are considered equal rotations and return the same hash.
 
 ```py
     def __hash__(self) -> int:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return a hash of the rotation. Quaternions with opposite signs are equal
-        and return the same hash."""
+        """Return a hash of the rotation.
+        Quaternions with opposite signs are considered equal rotations and return the same hash.
+        """
         if self._w != 0.0:
             s = copysign(1.0, self._w)
         elif self._x != 0.0:
@@ -1762,51 +1601,51 @@ and return the same hash.</summary>
         else:
             s = copysign(1.0, self._z)
         return hash((s * self._x, s * self._y, s * self._z, s * self._w))
-
 ```
-</details><br>
+</details>
 </details>
 
 <br></details>
 
-<details><summary><b><code>class Trafo</code></b> — A 3d transformation consisting of a translation and a rotation.</summary>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__</code> — Create a transformation from a translation and a rotation.</summary>
+<details><summary><b><code>class Trafo</code></b> — A 3d transformation consisting of a translation and a rotation</summary>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<code>t: Vector</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>r: Rotation</code>
+
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__()</code> — Create a transformation from a translation and a rotation.</summary>
 
 ```py
     def __init__(self, *, t: Vector = Vector.zero(), r: Rotation = Rotation.identity()):
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a transformation from a translation and a rotation."""
         # kw_only parameter for @dataclass only supported for Python 3.10+
         object.__setattr__(self, "t", t)
         object.__setattr__(self, "r", r)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>identity</code> — Return the identity transformation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>identity()</code> — Return the identity transformation.</summary>
 
 ```py
     @staticmethod
     def identity() -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the identity transformation."""
         return Trafo()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_matrix</code> — Create a transformation from a 3x4 or 4x4 homogeneous transformation matrix.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_matrix(...)</code> — Create a transformation from a 3x4 or 4x4 homogeneous transformation matrix.</summary>
 
 ```py
     @staticmethod
@@ -1816,7 +1655,7 @@ and return the same hash.</summary>
         check_matrix: bool = True,
     ) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a transformation from a 3x4 or 4x4 homogeneous transformation matrix."""
@@ -1852,20 +1691,18 @@ and return the same hash.</summary>
                 check_matrix=check_matrix,
             ),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_matrix</code> — Return the transformation as a 3x4 or 4x4 homogeneous transformation matrix.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>as_matrix(...)</code> — Return the transformation as a 3x4 or 4x4 homogeneous transformation matrix.</summary>
 
 ```py
     def as_matrix(
         self, row_major: bool = True, num_rows: Literal[3, 4] = 4
     ) -> List[List[float]]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the transformation as a 3x4 or 4x4 homogeneous transformation matrix."""
@@ -1884,13 +1721,13 @@ and return the same hash.</summary>
                 matrix[2].append(0.0)
                 matrix[3].append(1.0)
         return matrix
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh</code> — (no docstring)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh()</code> — Create a transformation from Denavit-Hartenberg parameters.</summary>
 
+https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters<br>s or d: offset along previous z to the common normal<br>theta: angle about previous z from old x to new x<br>r or a: length of the common normal<br>alpha: angle about common normal, from old z axis to new z axis
 
 ```py
     @overload
@@ -1898,82 +1735,25 @@ and return the same hash.</summary>
     def from_dh(
         *, a: float = 0.0, alpha: float = 0.0, theta: float = 0.0, s: float = 0.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh</code> — (no docstring)</summary>
-
-
-```py
     @overload
     @staticmethod
     def from_dh(
         *, r: float = 0.0, alpha: float = 0.0, theta: float = 0.0, s: float = 0.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh</code> — (no docstring)</summary>
-
-
-```py
     @overload
     @staticmethod
     def from_dh(
         *, a: float = 0.0, alpha: float = 0.0, theta: float = 0.0, d: float = 0.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh</code> — (no docstring)</summary>
-
-
-```py
     @overload
     @staticmethod
     def from_dh(
         *, r: float = 0.0, alpha: float = 0.0, theta: float = 0.0, d: float = 0.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>from_dh</code> — Create a transformation from Denavit-Hartenberg parameters.
-https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters
-s or d: offset along previous z to the common normal
-theta: angle about previous z from old x to new x
-r or a: length of the common normal
-alpha: angle about common normal, from old z axis to new z axis</summary>
-
-
-```py
     @staticmethod
     def from_dh(
         *,
@@ -1985,7 +1765,7 @@ alpha: angle about common normal, from old z axis to new z axis</summary>
         d: float = 0.0  # alternative to s (often used since s is used to abbreviate sin)
     ) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a transformation from Denavit-Hartenberg parameters.
@@ -2006,13 +1786,13 @@ alpha: angle about common normal, from old z axis to new z axis</summary>
         return Trafo(t=Vector(z=s_), r=Rotation.z(theta)) @ Trafo(
             t=Vector(x=a_), r=Rotation.x(alpha)
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>look_at</code> — (no docstring)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>look_at()</code> — Create a transformation that looks at a target point.</summary>
 
+eye: location<br>look_axis: local view direction (from eye towards target)<br>look_at: target if target is a point<br>look_along: target if target is a direction<br>up_axis: local up direction<br>up: global up direction
 
 ```py
     @overload
@@ -2025,20 +1805,7 @@ alpha: angle about common normal, from old z axis to new z axis</summary>
         up_axis: Vector,
         up: Vector,
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>look_at</code> — (no docstring)</summary>
-
-
-```py
     @overload
     @staticmethod
     def look_at(
@@ -2049,26 +1816,7 @@ alpha: angle about common normal, from old z axis to new z axis</summary>
         up_axis: Vector,
         up: Vector,
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>look_at</code> — Create a transformation that looks at a target point.
-eye: location
-look_axis: local view direction (from eye towards target)
-look_at: target if target is a point
-look_along: target if target is a direction
-up_axis: local up direction
-up: global up direction</summary>
-
-
-```py
     @staticmethod
     def look_at(
         *,
@@ -2080,7 +1828,7 @@ up: global up direction</summary>
         up: Vector,
     ) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Create a transformation that looks at a target point.
@@ -2146,80 +1894,43 @@ up: global up direction</summary>
         )
 
         return Trafo(t=eye, r=extrinsic_rotation @ intrinsic_rotation)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Combine two transformations.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__(...)</code> — Combine two transformations or transform a point or sequence of points.</summary>
 
+Use myTrafo.r @ myVector to transform a Vector as a direction instead.
 
 ```py
     @overload
     def __matmul__(self, other: "Trafo") -> "Trafo":
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Combine two transformations."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Transform a point. (Use myTrafo.r @ myVector to transform a direction).</summary>
-
-
-```py
     @overload
     def __matmul__(self, other: Vector) -> Vector:
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Transform a point. (Use myTrafo.r @ myVector to transform a direction)."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Transform a sequence of points.</summary>
-
-
-```py
     @overload
     def __matmul__(self, other: Iterable[Vector]) -> Iterable[Vector]:
-```
-<details><summary><i>source code</i></summary>
-
-```py
         """Transform a sequence of points."""
         ...
 
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__matmul__</code> — Combine two transformations or transform a point or sequence of points.
-Use myTrafo.r @ myVector to transform a direction.</summary>
-
-
-```py
     def __matmul__(
         self, other: Union["Trafo", Vector, Iterable[Vector]]
     ) -> Union["Trafo", Vector, Iterable[Vector]]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Combine two transformations or transform a point or sequence of points.
-        Use myTrafo.r @ myVector to transform a direction."""
+        Use myTrafo.r @ myVector to transform a Vector as a direction instead."""
 
         if isinstance(other, Trafo):
             return Trafo(
-                t=self.t + self.r @ Vector(*other.t),
+                t=self.t + self.r @ other.t,
                 r=self.r @ other.r,
             )
         elif isinstance(other, Vector):
@@ -2230,49 +1941,46 @@ Use myTrafo.r @ myVector to transform a direction.</summary>
             return [r + self.t for r in rotated]
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>inverse</code> — Return the inverse transformation such that t @ t.inverse() == Trafo.identity().</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>inverse()</code> — Return the inverse transformation (as a new Trafo).</summary>
 
+Such that t @ t.inverse() == Trafo.identity().
 
 ```py
     def inverse(self) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the inverse transformation such that t @ t.inverse() == Trafo.identity()."""
+        """Return the inverse transformation (as a new Trafo).
+        Such that t @ t.inverse() == Trafo.identity()."""
         inv_r = ~self.r
         return Trafo(t=inv_r @ -self.t, r=inv_r)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp</code> — Linearly interpolate between two transformations.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>lerp(...)</code> — Linearly interpolate between two transformations (returns a new Trafo).</summary>
 
 ```py
     def lerp(self, other: "Trafo", f: float) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Linearly interpolate between two transformations."""
+        """Linearly interpolate between two transformations (returns a new Trafo)."""
         return Trafo(
             t=self.t.lerp(other.t, f),
             r=self.r.lerp(other.r, f),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean</code> — Calculate the weighted mean of a sequence of transformations.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>mean(...)</code> — Calculate the weighted mean of a sequence of transformations.</summary>
 
 ```py
     @staticmethod
@@ -2280,7 +1988,7 @@ Use myTrafo.r @ myVector to transform a direction.</summary>
         trafos: Iterable["Trafo"], weights: Optional[Iterable[float]] = None
     ) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Calculate the weighted mean of a sequence of transformations."""
@@ -2288,54 +1996,25 @@ Use myTrafo.r @ myVector to transform a direction.</summary>
             t=Vector.mean([t.t for t in trafos], weights),
             r=Rotation.mean([t.r for t in trafos], weights),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards</code> — (no docstring)</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards(...)</code> — Return a rotated version of the transformation, aligning a pointer.</summary>
 
+Such that the local pointer is rotated towards<br>the global target point (point_at) or direction (point_along).<br>Use interpolate to blend between current and target.
 
 ```py
     @overload
     def rotated_towards(
         self, pointer: Vector, *, point_at: Vector, interpolate: float = 1.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards</code> — (no docstring)</summary>
-
-
-```py
     @overload
     def rotated_towards(
         self, pointer: Vector, *, point_along: Vector, interpolate: float = 1.0
     ) -> "Trafo": ...
-:
-```
-<details><summary><i>source code</i></summary>
 
-```py
-        
-```
-</details><br>
-</details>
-
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotated_towards</code> — Return a rotated version of the transformation
-such that the local pointer is rotated towards
-the global target point (point_at) or direction (point_along).
-Use interpolate to blend between current and target.</summary>
-
-
-```py
     def rotated_towards(
         self,
         pointer: Vector,
@@ -2345,12 +2024,12 @@ Use interpolate to blend between current and target.</summary>
         interpolate: float = 1.0
     ) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """
-        Return a rotated version of the transformation
-        such that the local pointer is rotated towards
+        Return a rotated version of the transformation, aligning a pointer.
+        Such that the local pointer is rotated towards
         the global target point (point_at) or direction (point_along).
         Use interpolate to blend between current and target.
         """
@@ -2366,18 +2045,16 @@ Use interpolate to blend between current and target.</summary>
             t=self.t,
             r=self.r.rotated_towards(pointer, point_along, interpolate),
         )
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__</code> — Check if two transformations are equal.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__eq__(...)</code> — Check if two transformations are equal.</summary>
 
 ```py
     def __eq__(self, other: object) -> bool:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Check if two transformations are equal."""
@@ -2385,51 +2062,46 @@ Use interpolate to blend between current and target.</summary>
             return self.t == other.t and self.r == other.r
         else:
             return NotImplemented
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__invert__</code> — Return the inverse transformation such that t @ ~t == Trafo.identity().</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__invert__()</code> — Return the inverse transformation such that t @ ~t == Trafo.identity().</summary>
 
 ```py
     def __invert__(self) -> "Trafo":
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the inverse transformation such that t @ ~t == Trafo.identity()."""
         return self.inverse()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__</code> — Return a string representation of the transformation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__str__()</code> — Return a string representation of the transformation.</summary>
 
 ```py
     def __str__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return a string representation of the transformation."""
         return f"(t={self.t}, r={self.r})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__</code> — Return a formatted string representation of the transformation.
-The format_spec is applied to each element.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__format__(...)</code> — Return a formatted string representation of the transformation.</summary>
 
+The format_spec is applied to each element.
 
 ```py
     def __format__(self, format_spec: str) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return a formatted string representation of the transformation.
@@ -2437,68 +2109,75 @@ The format_spec is applied to each element.</summary>
         ft = self.t.__format__(format_spec)
         fr = self.r.__format__(format_spec)
         return f"(t={ft}, r={fr})"
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__</code> — Return an eval-able string representation of the transformation.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__repr__()</code> — Return an eval-able string representation of the transformation.</summary>
 
 ```py
     def __repr__(self) -> str:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return an eval-able string representation of the transformation."""
         return f"Trafo(t={self.t.__repr__()}, r={self.r.__repr__()})"
-
 ```
-</details><br>
+</details>
 </details>
 
 <br></details>
 
-<details><summary><b><code>class Node</code></b> — A node in a tree structure that represents a hierarchy of transformations.</summary>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__</code> — Create a node with a parent, a transformation in relation to the parent
-and a label for debugging and visualizing.</summary>
+<details><summary><b><code>class Node</code></b> — A node in a tree structure that represents a hierarchy of transformations (i.e. a scene graph)</summary>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_parent: Union["Node", None]</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>trafo: Trafo</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>_children: list["Node"]</code>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;<code>label: str</code>
+
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__(...)</code> — Create a node with a transformation relative to a parent.</summary>
+
+Assign a label for debugging and visualizing.
 
 ```py
     def __init__(self, parent: Union["Node", None], trafo: Trafo, label: str = ""):
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a node with a parent, a transformation in relation to the parent
-        and a label for debugging and visualizing."""
+        """Create a node with a transformation relative to a parent.
+        Assign a label for debugging and visualizing."""
         self._parent = parent
         if parent is not None:
             parent._children.append(self)
         self.trafo = trafo
         self._children = []
         self.label = label
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>attach_to</code> — Attach the node to a new parent.
-If keep_relative_trafo is True, the transformation of the node is updated
-to keep the relative transformation to the new parent the same.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>attach_to(...)</code> — Attach the node to a new parent.</summary>
 
+If keep_relative_trafo is true, the transformation of the node is updated<br>to keep the relative transformation to the new parent the same.
 
 ```py
     def attach_to(
         self, new_parent: Union["Node", None], keep_relative_trafo: bool = False
     ) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Attach the node to a new parent.
-        If keep_relative_trafo is True, the transformation of the node is updated
+        If keep_relative_trafo is true, the transformation of the node is updated
         to keep the relative transformation to the new parent the same."""
 
         ancestor = new_parent
@@ -2516,53 +2195,47 @@ to keep the relative transformation to the new parent the same.</summary>
         self._parent = new_parent
         if new_parent is not None:
             new_parent._children.append(self)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>get_parent</code> — Return the parent node.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>get_parent()</code> — Return the parent node.</summary>
 
 ```py
     def get_parent(self) -> Union["Node", None]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the parent node."""
         return self._parent
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>get_children</code> — Return the child nodes. (Returns a copy of the list that can be modified.)</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>get_children()</code> — Return the child nodes. (Returns a copy of the list that can be modified.)</summary>
 
 ```py
     def get_children(self) -> list["Node"]:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Return the child nodes. (Returns a copy of the list that can be modified.)"""
         return self._children.copy()
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__rshift__</code> — Return the transformation from the Node to another Node in the hierarchy.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__rshift__(...)</code> — Return the transformation from the node to another node in the hierarchy.</summary>
 
 ```py
     def __rshift__(self, other: "Node") -> Trafo:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Return the transformation from the Node to another Node in the hierarchy."""
+        """Return the transformation from the node to another node in the hierarchy."""
         if not isinstance(other, Node):
             return NotImplemented
 
@@ -2598,9 +2271,8 @@ to keep the relative transformation to the new parent the same.</summary>
             ancestor = cast("Node", ancestor._parent)
 
         return me_to_common_ancestor @ common_ancestor_to_other
-
 ```
-</details><br>
+</details>
 </details>
 
 <br></details>
@@ -2608,9 +2280,9 @@ to keep the relative transformation to the new parent the same.</summary>
 <details><summary><b><code>class DebugDrawer</code></b> — Abstract base class for a debug drawer that lets you visualize
 vectors, rotations and transformations in relation to each other.
 At minimum, the line method must be implemented.</summary>
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__</code> — Create a debug drawer. The settings are used in the default implementations
-of the drawing methods, subclasses are free to ignore them.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__(...)</code> — Create a debug drawer.</summary>
 
+The settings are used in the default implementations<br>of the drawing methods, subclasses are free to ignore them.
 
 ```py
     def __init__(
@@ -2621,22 +2293,21 @@ of the drawing methods, subclasses are free to ignore them.</summary>
         text_direction: Vector = Vector.ex(),
     ):
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Create a debug drawer. The settings are used in the default implementations
+        """Create a debug drawer.
+        The settings are used in the default implementations
         of the drawing methods, subclasses are free to ignore them."""
         self.up = up
         self.arrow_length = arrow_length
         self.font_size = font_size
         self.text_direction = text_direction
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>line</code> — Draw a line.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>line(...)</code> — Draw a line.</summary>
 
 ```py
     @abstractmethod
@@ -2647,23 +2318,21 @@ of the drawing methods, subclasses are free to ignore them.</summary>
         color: Color,
     ) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a line."""
         pass
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>arrow</code> — Draw an arrow.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>arrow(...)</code> — Draw an arrow.</summary>
 
 ```py
     def arrow(self, start: Vector, end: Vector, color: Color) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw an arrow."""
@@ -2674,52 +2343,46 @@ of the drawing methods, subclasses are free to ignore them.</summary>
             self.line(start, end, color)
             self.line(end, barb1, color)
             self.line(end, barb2, color)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>point</code> — Draw a point.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>point(...)</code> — Draw a point.</summary>
 
 ```py
     def point(self, position: Vector) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a point."""
         self.line(position - Vector(x=0.01), position + Vector(x=0.01), "default")
         self.line(position - Vector(y=0.01), position + Vector(y=0.01), "default")
         self.line(position - Vector(z=0.01), position + Vector(z=0.01), "default")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>vector</code> — Draw a vector as an arrow from the origin.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>vector(...)</code> — Draw a vector as an arrow from the origin.</summary>
 
 ```py
     def vector(self, vector: Vector) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a vector as an arrow from the origin."""
         self.arrow(Vector.zero(), vector, "default")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotation</code> — Draw a rotation as a rotated coordinate frame.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>rotation(...)</code> — Draw a rotation as a rotated coordinate frame.</summary>
 
 ```py
     def rotation(self, rotation: Rotation) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a rotation as a rotated coordinate frame."""
@@ -2730,18 +2393,16 @@ of the drawing methods, subclasses are free to ignore them.</summary>
         self.arrow(o, x * self.arrow_length, "x-red")
         self.arrow(o, y * self.arrow_length, "y-green")
         self.arrow(o, z * self.arrow_length, "z-blue")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>trafo</code> — Draw a transformation as a transformed coordinate frame.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>trafo(...)</code> — Draw a transformation as a transformed coordinate frame.</summary>
 
 ```py
     def trafo(self, trafo: Trafo) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a transformation as a transformed coordinate frame."""
@@ -2752,18 +2413,16 @@ of the drawing methods, subclasses are free to ignore them.</summary>
         self.arrow(o, o + x * self.arrow_length, "x-red")
         self.arrow(o, o + y * self.arrow_length, "y-green")
         self.arrow(o, o + z * self.arrow_length, "z-blue")
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>text</code> — Draw text at a position.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>text(...)</code> — Draw text at a position.</summary>
 
 ```py
     def text(self, position: Vector, text: str) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw text at a position."""
@@ -2824,53 +2483,47 @@ of the drawing methods, subclasses are free to ignore them.</summary>
         for i, c in enumerate(text):
             mask = masks[c.upper() if c.upper() in masks else "?"]
             fsd_char(i, mask, c.islower())
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>node</code> — Draw a node - a Trafo with an arrow from the origin and a label;
-origin and Trafo can be shifted by offset.</summary>
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>node(...)</code> — Draw a node.</summary>
 
+Draws a Trafo with an arrow from the origin and a label;<br>origin and Trafo can be shifted by offset.
 
 ```py
     def node(self, node: Node, offset: Trafo = Trafo()) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
-        """Draw a node - a Trafo with an arrow from the origin and a label;
+        """Draw a node.
+        Draws a Trafo with an arrow from the origin and a label;
         origin and Trafo can be shifted by offset."""
         o_parent = offset.t
         o_node = offset @ node.trafo.t
         self.arrow(o_parent, o_node, "default")
         self.trafo(offset @ node.trafo)
         self.text(o_node, node.label)
-
 ```
-</details><br>
+</details>
 </details>
 
-<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>tree</code> — Draw a tree of Trafos starting at the root node, shifted by offset.</summary>
-
+<details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>tree(...)</code> — Draw a tree of Trafos starting at the root node, shifted by offset.</summary>
 
 ```py
     def tree(self, root: Node, offset: Trafo = Trafo()) -> None:
 ```
-<details><summary><i>source code</i></summary>
+<details open><summary><i>source code</i></summary>
 
 ```py
         """Draw a tree of Trafos starting at the root node, shifted by offset."""
         self.node(root, offset)
         for child in root.get_children():
             self.tree(child, offset=offset @ root.trafo)
-
 ```
-</details><br>
+</details>
 </details>
 
-<br></details>
-
-<details><summary><b><code>class RotationMeanReport</code></b> — Additional information about convergence of the mean method.</summary>
 <br></details>
 
