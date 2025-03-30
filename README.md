@@ -1,4 +1,4 @@
-<details><summary><b><code>class Vector</code></b> — An immutable 3D vector representing a point or a direction</summary>
+<details><summary><b><code>class Vector</code></b> — An immutable 3D vector representing a point or a direction</summary><br>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>x: float = 0.0</code>
 
