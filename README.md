@@ -1,12 +1,12 @@
 <details><summary><b><code>class Vector</code></b> — An immutable 3D vector representing a point or a direction</summary>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>x: float = 0.0</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>x: float = 0.0</code>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>y: float = 0.0</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>y: float = 0.0</code>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>z: float = 0.0</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>z: float = 0.0</code>
 
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>zero()</code> — Create a zero vector while being extra explicit about it.</summary>
 
@@ -534,18 +534,6 @@ The format_spec is applied to each element.
 <br></details>
 
 <details><summary><b><code>class Rotation</code></b> — An immutable 3D orientation or rotation</summary>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_x: float</code>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_y: float</code>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_z: float</code>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_w: float</code>
-
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__setattr__(...)</code> — Deleted, always raises.</summary>
 
 ```py
@@ -1609,10 +1597,10 @@ Quaternions with opposite signs are considered equal rotations and return the sa
 
 <details><summary><b><code>class Trafo</code></b> — A 3d transformation consisting of a translation and a rotation</summary>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>t: Vector</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>t: Vector</code>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>r: Rotation</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>r: Rotation</code>
 
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__()</code> — Create a transformation from a translation and a rotation.</summary>
 
@@ -2131,16 +2119,10 @@ The format_spec is applied to each element.
 
 <details><summary><b><code>class Node</code></b> — A node in a tree structure that represents a hierarchy of transformations (i.e. a scene graph)</summary>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_parent: Union["Node", None]</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>trafo: Trafo</code>
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;<code>trafo: Trafo</code>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>_children: list["Node"]</code>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;<code>label: str</code>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>label: str</code>
 
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>__init__(...)</code> — Create a node with a transformation relative to a parent.</summary>
 
