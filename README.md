@@ -32,7 +32,6 @@
 ```
 </details><br>
 </details>
-
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ey</code> — Create a unit vector in y-direction.</summary>
 
 
@@ -49,7 +48,6 @@
 ```
 </details><br>
 </details>
-
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ez</code> — Create a unit vector in z-direction.</summary>
 
 
