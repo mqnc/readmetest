@@ -30,7 +30,7 @@
         return Vector(1.0, 0.0, 0.0)
 
 ```
-</details><br>
+</details>
 </details>
 <details name='method'><summary>&nbsp;&nbsp;&nbsp;&nbsp;<code>ey</code> — Create a unit vector in y-direction.</summary>
 
