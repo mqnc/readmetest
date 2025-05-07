@@ -61,3 +61,12 @@ In general, in this project the term "transformation" refers to active transform
 
 ![equation](https://github.com/user-attachments/assets/aa59a13a-5cd6-4a98-acf3-07c3005f99ed)
 
+
+
+
+![invert](https://github.com/user-attachments/assets/f32191ca-5fae-4eaf-87f7-a8dc9f586ca6)
+
+
+
+
+
